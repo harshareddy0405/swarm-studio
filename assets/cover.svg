@@ -1,0 +1,64 @@
+<svg width="1440" height="720" viewBox="0 0 1440 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Swarm Studio</title>
+  <desc id="desc">A dark green mission control interface with connected agent nodes and orchestration lanes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="70" y1="20" x2="1370" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1C16"/><stop offset="1" stop-color="#050B09"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#BAF76B"/><stop offset="1" stop-color="#73E7D2"/>
+    </linearGradient>
+    <radialGradient id="halo"><stop stop-color="#BAF76B" stop-opacity=".19"/><stop offset="1" stop-color="#BAF76B" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="45"/></filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" stroke="#8CBBA5" stroke-opacity=".07"/></pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="1440" height="720" rx="28" fill="url(#bg)"/>
+  <rect width="1440" height="720" rx="28" fill="url(#grid)"/>
+  <circle cx="1170" cy="88" r="260" fill="url(#halo)" filter="url(#blur)"/>
+  <circle cx="210" cy="630" r="210" fill="#73E7D2" fill-opacity=".05" filter="url(#blur)"/>
+  <g opacity=".7"><path d="M118 105H1322" stroke="#284437"/><path d="M1080 75h242" stroke="#BAF76B" stroke-opacity=".38"/><circle cx="1096" cy="75" r="4" fill="#BAF76B"/></g>
+  <g transform="translate(118 49)">
+    <g transform="rotate(45 22 22)"><rect x="4" y="4" width="17" height="17" fill="#BAF76B"/><rect x="24" y="4" width="17" height="17" stroke="#BAF76B"/><rect x="4" y="24" width="17" height="17" stroke="#BAF76B"/><rect x="24" y="24" width="17" height="17" fill="#BAF76B"/></g>
+    <text x="66" y="24" fill="#EDF8F2" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">SWARM</text>
+    <text x="66" y="41" fill="#759687" font-family="monospace" font-size="9" letter-spacing="2">STUDIO / 01</text>
+  </g>
+  <g transform="translate(118 166)">
+    <text fill="#BAF76B" font-family="monospace" font-size="11" letter-spacing="2">MULTI-AGENT ORCHESTRATION / MADE VISIBLE</text>
+    <text y="70" fill="#EDF8F2" font-family="Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-3">Operate the swarm.</text>
+    <text y="108" fill="#8DA99D" font-family="Arial, sans-serif" font-size="18">Route work. Inspect decisions. Replay the mission.</text>
+  </g>
+  <g filter="url(#shadow)" transform="translate(118 360)">
+    <rect width="1204" height="245" rx="18" fill="#0B1713" stroke="#294638"/>
+    <g transform="translate(28 26)">
+      <text fill="#678276" font-family="monospace" font-size="9" letter-spacing="1.6">CREW MANIFEST</text>
+      <g transform="translate(0 28)">
+        <rect width="230" height="58" rx="11" fill="#101F19" stroke="#274237"/><rect x="12" y="11" width="36" height="36" rx="10" fill="#73E7D2"/><text x="30" y="34" text-anchor="middle" fill="#0A1611" font-family="monospace" font-size="10" font-weight="700">OR</text><text x="61" y="25" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">Orion</text><text x="61" y="42" fill="#769488" font-family="Arial" font-size="9">Research strategist</text><circle cx="214" cy="18" r="4" fill="#BAF76B"/>
+        <g transform="translate(0 70)"><rect width="230" height="58" rx="11" fill="#101F19" stroke="#274237"/><rect x="12" y="11" width="36" height="36" rx="10" fill="#B9A0FF"/><text x="30" y="34" text-anchor="middle" fill="#0A1611" font-family="monospace" font-size="10" font-weight="700">MI</text><text x="61" y="25" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">Mira</text><text x="61" y="42" fill="#769488" font-family="Arial" font-size="9">Product designer</text><circle cx="214" cy="18" r="4" fill="#FFC766"/></g>
+        <g transform="translate(0 140)"><rect width="230" height="58" rx="11" fill="#101F19" stroke="#274237"/><rect x="12" y="11" width="36" height="36" rx="10" fill="#FFC766"/><text x="30" y="34" text-anchor="middle" fill="#0A1611" font-family="monospace" font-size="10" font-weight="700">FO</text><text x="61" y="25" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">Forge</text><text x="61" y="42" fill="#769488" font-family="Arial" font-size="9">Systems builder</text><circle cx="214" cy="18" r="4" fill="#BAF76B"/></g>
+      </g>
+    </g>
+    <g transform="translate(298 26)">
+      <g><circle cx="7" cy="7" r="4" fill="#8DA99D"/><text x="21" y="11" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">QUEUED</text><text x="183" y="11" fill="#678276" font-family="monospace" font-size="10">03</text></g>
+      <rect y="28" width="205" height="76" rx="10" fill="#101F19" stroke="#274237"/><text x="14" y="49" fill="#73E7D2" font-family="monospace" font-size="8">RESEARCH</text><text x="14" y="70" fill="#EDF8F2" font-family="Arial" font-size="11" font-weight="700">Map competitor narratives</text><path d="M14 89H188" stroke="#274237"/><path d="M14 89H54" stroke="#73E7D2"/>
+      <rect y="116" width="205" height="76" rx="10" fill="#101F19" stroke="#274237"/><text x="14" y="137" fill="#73E7D2" font-family="monospace" font-size="8">ENGINEERING</text><text x="14" y="158" fill="#EDF8F2" font-family="Arial" font-size="11" font-weight="700">Instrument launch signals</text><path d="M14 177H188" stroke="#274237"/>
+    </g>
+    <g transform="translate(529 26)">
+      <g><circle cx="7" cy="7" r="4" fill="#FFC766"/><text x="21" y="11" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">IN FLIGHT</text><text x="183" y="11" fill="#678276" font-family="monospace" font-size="10">01</text></g>
+      <rect y="28" width="205" height="116" rx="10" fill="#101F19" stroke="#3F594D"/><text x="14" y="49" fill="#73E7D2" font-family="monospace" font-size="8">RESEARCH</text><text x="14" y="72" fill="#EDF8F2" font-family="Arial" font-size="11" font-weight="700">Synthesize interview notes</text><text x="14" y="92" fill="#769488" font-family="Arial" font-size="9">Orion · 48% complete</text><path d="M14 124H188" stroke="#274237" stroke-width="3"/><path d="M14 124H98" stroke="url(#glow)" stroke-width="3"/>
+      <path d="M-18 82H-5" stroke="#BAF76B" stroke-dasharray="3 3"/><path d="M210 82h13" stroke="#BAF76B" stroke-dasharray="3 3"/>
+    </g>
+    <g transform="translate(760 26)">
+      <g><circle cx="7" cy="7" r="4" fill="#B9A0FF"/><text x="21" y="11" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">REVIEW</text><text x="183" y="11" fill="#678276" font-family="monospace" font-size="10">01</text></g>
+      <rect y="28" width="205" height="92" rx="10" fill="#101F19" stroke="#274237"/><text x="14" y="49" fill="#B9A0FF" font-family="monospace" font-size="8">QUALITY GATE</text><text x="14" y="72" fill="#EDF8F2" font-family="Arial" font-size="11" font-weight="700">Validate message hierarchy</text><text x="14" y="94" fill="#769488" font-family="Arial" font-size="9">Sentinel · inspecting</text>
+      <path d="M210 72h13" stroke="#BAF76B" stroke-dasharray="3 3"/>
+    </g>
+    <g transform="translate(991 26)">
+      <g><circle cx="7" cy="7" r="4" fill="#BAF76B"/><text x="21" y="11" fill="#EDF8F2" font-family="Arial" font-size="12" font-weight="700">RESOLVED</text><text x="183" y="11" fill="#678276" font-family="monospace" font-size="10">02</text></g>
+      <rect y="28" width="185" height="72" rx="10" fill="#101F19" stroke="#274237"/><circle cx="19" cy="51" r="7" fill="#BAF76B" fill-opacity=".14"/><path d="m15 51 3 3 5-6" stroke="#BAF76B" stroke-width="1.5"/><text x="35" y="54" fill="#EDF8F2" font-family="Arial" font-size="10" font-weight="700">Frame launch hypothesis</text><text x="35" y="73" fill="#769488" font-family="monospace" font-size="8">PASSED / 7s</text>
+      <rect y="112" width="185" height="72" rx="10" fill="#101F19" stroke="#274237"/><circle cx="19" cy="135" r="7" fill="#BAF76B" fill-opacity=".14"/><path d="m15 135 3 3 5-6" stroke="#BAF76B" stroke-width="1.5"/><text x="35" y="138" fill="#EDF8F2" font-family="Arial" font-size="10" font-weight="700">Define audience segments</text><text x="35" y="157" fill="#769488" font-family="monospace" font-size="8">PASSED / 9s</text>
+    </g>
+  </g>
+  <g transform="translate(118 655)"><circle cx="5" cy="5" r="5" fill="#BAF76B"/><text x="20" y="9" fill="#8DA99D" font-family="monospace" font-size="10" letter-spacing="1.4">LOCAL-FIRST · DETERMINISTIC · EXPLAINABLE</text></g>
+  <text x="1322" y="664" text-anchor="end" fill="#526C61" font-family="monospace" font-size="10">NO MODEL CALLS / ZERO DEPENDENCIES</text>
+</svg>

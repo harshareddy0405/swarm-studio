@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Swarm Studio — a local-first multi-agent orchestration simulator."
+    />
+    <meta name="theme-color" content="#07100d" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307100d'/%3E%3Cg fill='%23baf76b' transform='rotate(45 32 32)'%3E%3Crect x='12' y='12' width='18' height='18'/%3E%3Crect x='34' y='34' width='18' height='18'/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <title>Swarm Studio — Agent Orchestration Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="quality.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to workspace</a>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand" aria-label="Swarm Studio home">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <span><strong>SWARM</strong><small>STUDIO / 01</small></span>
+      </div>
+      <div class="run-cluster" role="group" aria-label="Simulation controls">
+        <span class="system-state" id="systemState"><i></i> STANDBY</span>
+        <button
+          class="icon-button"
+          id="resetButton"
+          type="button"
+          title="Reset demo (R)"
+          aria-label="Reset demo"
+        >
+          ↺
+        </button>
+        <button
+          class="icon-button"
+          id="stepButton"
+          type="button"
+          title="Advance one step"
+          aria-label="Advance one simulation step"
+        >
+          ⇥
+        </button>
+        <button
+          class="run-button"
+          id="runButton"
+          type="button"
+          aria-pressed="false"
+        >
+          <span class="run-icon">▶</span><span id="runLabel">Run swarm</span
+          ><kbd>Space</kbd>
+        </button>
+      </div>
+      <div class="top-actions">
+        <button
+          class="icon-button"
+          id="soundButton"
+          type="button"
+          aria-pressed="false"
+          title="Toggle interface sounds"
+          aria-label="Toggle interface sounds"
+        >
+          ♪
+        </button>
+        <button
+          class="icon-button"
+          id="themeButton"
+          type="button"
+          title="Toggle theme"
+          aria-label="Toggle color theme"
+        >
+          ☼
+        </button>
+        <button
+          class="avatar"
+          id="aboutButton"
+          type="button"
+          aria-label="About this simulation"
+        >
+          HS
+        </button>
+      </div>
+    </header>
+
+    <main id="workspace" class="workspace">
+      <aside class="rail" aria-label="Swarm overview">
+        <section class="rail-section mission-panel">
+          <p class="eyebrow">Active mission</p>
+          <h1>Launch intelligence</h1>
+          <p>
+            Coordinate a research-to-release pipeline with a small specialist
+            swarm.
+          </p>
+          <div class="mission-progress">
+            <div class="progress-copy">
+              <span>Mission progress</span
+              ><strong id="progressLabel">0%</strong>
+            </div>
+            <div class="progress-track"><span id="progressBar"></span></div>
+          </div>
+        </section>
+
+        <section class="rail-section metrics-grid" aria-label="Live metrics">
+          <article>
+            <span>Throughput</span><strong id="throughputMetric">0</strong
+            ><small>tasks / run</small>
+          </article>
+          <article>
+            <span>Avg. latency</span><strong id="latencyMetric">—</strong
+            ><small>simulated</small>
+          </article>
+          <article>
+            <span>Tokens</span><strong id="tokenMetric">0</strong
+            ><small>synthetic</small>
+          </article>
+          <article>
+            <span>Efficiency</span><strong id="efficiencyMetric">—</strong
+            ><small>utilisation</small>
+          </article>
+        </section>
+
+        <section class="rail-section roster-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Crew manifest</p>
+              <h2>Agents</h2>
+            </div>
+            <span class="count-chip" id="agentCount">4 online</span>
+          </div>
+          <div
+            id="agentRoster"
+            class="agent-roster"
+            role="group"
+            aria-label="Specialist agents"
+          ></div>
+        </section>
+
+        <section class="rail-section local-note">
+          <span aria-hidden="true">⌁</span>
+          <div>
+            <strong>Local simulation</strong>
+            <p>No network, model, or API calls.</p>
+          </div>
+        </section>
+      </aside>
+
+      <section class="main-stage" aria-label="Mission control board">
+        <div class="stage-header">
+          <div>
+            <p class="breadcrumb">MISSIONS / LAUNCH INTELLIGENCE</p>
+            <h2>Orchestration board</h2>
+            <p class="stage-subtitle">
+              Route work, inspect decisions, then run the deterministic
+              simulation.
+            </p>
+          </div>
+          <div class="stage-actions">
+            <div class="view-switcher" role="group" aria-label="Board density">
+              <button
+                class="active"
+                data-density="comfortable"
+                type="button"
+                aria-pressed="true"
+              >
+                Comfortable
+              </button>
+              <button data-density="compact" type="button" aria-pressed="false">
+                Compact
+              </button>
+            </div>
+            <button class="secondary-button" id="exportButton" type="button">
+              ↓ Export log
+            </button>
+            <button class="primary-button" id="newTaskButton" type="button">
+              ＋ New task <kbd>N</kbd>
+            </button>
+          </div>
+        </div>
+
+        <section class="pulse-strip" aria-label="Swarm activity">
+          <div>
+            <span class="live-dot"></span><strong>Swarm pulse</strong
+            ><small id="tickLabel">tick 000</small>
+          </div>
+          <svg
+            id="pulseChart"
+            viewBox="0 0 640 54"
+            preserveAspectRatio="none"
+            role="img"
+            aria-label="Synthetic swarm activity sparkline"
+          >
+            <path class="pulse-fill" d=""></path>
+            <path class="pulse-line" d=""></path>
+          </svg>
+          <div class="pulse-legend">
+            <span><i class="cyan"></i>load</span
+            ><span><i class="lime"></i>events</span>
+          </div>
+        </section>
+
+        <section class="board" id="taskBoard" aria-label="Task board">
+          <div class="lane" data-status="queued">
+            <header>
+              <div>
+                <span class="lane-dot queued"></span>
+                <h3>Queued</h3>
+                <b id="queuedCount">0</b>
+              </div>
+              <small>Awaiting routing</small>
+            </header>
+            <div class="task-list" id="queuedList" data-dropzone="queued"></div>
+          </div>
+          <div class="lane" data-status="running">
+            <header>
+              <div>
+                <span class="lane-dot running"></span>
+                <h3>In flight</h3>
+                <b id="runningCount">0</b>
+              </div>
+              <small>Agent execution</small>
+            </header>
+            <div
+              class="task-list"
+              id="runningList"
+              data-dropzone="running"
+            ></div>
+          </div>
+          <div class="lane" data-status="review">
+            <header>
+              <div>
+                <span class="lane-dot review"></span>
+                <h3>Review</h3>
+                <b id="reviewCount">0</b>
+              </div>
+              <small>Quality gate</small>
+            </header>
+            <div class="task-list" id="reviewList" data-dropzone="review"></div>
+          </div>
+          <div class="lane" data-status="done">
+            <header>
+              <div>
+                <span class="lane-dot done"></span>
+                <h3>Resolved</h3>
+                <b id="doneCount">0</b>
+              </div>
+              <small>Mission output</small>
+            </header>
+            <div class="task-list" id="doneList" data-dropzone="done"></div>
+          </div>
+        </section>
+
+        <section class="lower-grid">
+          <article class="timeline-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Black box recorder</p>
+                <h2>Decision timeline</h2>
+              </div>
+              <div
+                class="filter-group"
+                role="group"
+                aria-label="Timeline filter"
+              >
+                <button class="active" data-filter="all" type="button">
+                  All
+                </button>
+                <button data-filter="route" type="button">Routes</button>
+                <button data-filter="work" type="button">Work</button>
+              </div>
+            </div>
+            <ol id="timeline" class="timeline" aria-live="polite"></ol>
+          </article>
+          <article class="protocol-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Routing protocol</p>
+                <h2>How work moves</h2>
+              </div>
+              <span class="verified">✓ deterministic</span>
+            </div>
+            <div class="protocol-flow">
+              <div>
+                <span>01</span><strong>Score</strong
+                ><small>skill × capacity</small>
+              </div>
+              <i>→</i>
+              <div>
+                <span>02</span><strong>Assign</strong
+                ><small>best-fit agent</small>
+              </div>
+              <i>→</i>
+              <div>
+                <span>03</span><strong>Review</strong
+                ><small>quality gate</small>
+              </div>
+            </div>
+            <div class="routing-note" id="routingNote">
+              <span>◎</span>
+              <p>
+                <strong>Router is ready.</strong><br />Start the swarm to
+                inspect each explainable routing decision.
+              </p>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="taskDialog" class="modal">
+      <form id="taskForm" method="dialog">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Mission input</p>
+            <h2>Create a task</h2>
+          </div>
+          <button
+            class="icon-button close-dialog"
+            type="button"
+            aria-label="Close dialog"
+          >
+            ×
+          </button>
+        </div>
+        <label
+          >Task title<input
+            id="taskTitle"
+            name="title"
+            maxlength="64"
+            placeholder="e.g. Audit the onboarding flow"
+            required
+        /></label>
+        <div class="form-row">
+          <label
+            >Work type<select id="taskType" name="type">
+              <option value="research">Research</option>
+              <option value="design">Design</option>
+              <option value="engineering">Engineering</option>
+              <option value="quality">Quality</option>
+            </select></label
+          >
+          <label
+            >Priority<select id="taskPriority" name="priority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select></label
+          >
+        </div>
+        <label
+          >Brief<textarea
+            id="taskBrief"
+            name="brief"
+            maxlength="180"
+            placeholder="What does done look like?"
+          ></textarea>
+        </label>
+        <p class="form-hint">
+          The router chooses an agent using type affinity and available
+          capacity.
+        </p>
+        <div class="modal-actions">
+          <button class="ghost-button close-dialog" type="button">Cancel</button
+          ><button class="primary-button" value="submit" type="submit">
+            Queue task
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="detailDialog" class="modal detail-modal">
+      <div id="detailContent"></div>
+      <div class="modal-actions">
+        <button class="danger-button" id="deleteTaskButton" type="button">
+          Delete task</button
+        ><button class="primary-button close-detail" type="button">Done</button>
+      </div>
+    </dialog>
+
+    <dialog id="aboutDialog" class="modal about-modal">
+      <button
+        class="icon-button close-about"
+        type="button"
+        aria-label="Close dialog"
+      >
+        ×
+      </button>
+      <div class="about-mark">S/01</div>
+      <p class="eyebrow">Portfolio experiment</p>
+      <h2>A tiny mission control<br />for synthetic agents.</h2>
+      <p>
+        Swarm Studio makes orchestration logic tangible. Everything runs in your
+        browser with seeded data and deterministic transitions—there are no
+        hidden model calls.
+      </p>
+      <button class="primary-button close-about" type="button">
+        Explore the board
+      </button>
+    </dialog>
+
+    <div
+      id="toastRegion"
+      class="toast-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <template id="taskTemplate">
+      <article class="task-card" draggable="true" tabindex="0">
+        <div class="task-top">
+          <span class="task-type"></span><span class="task-priority"></span>
+        </div>
+        <h4></h4>
+        <p class="task-brief"></p>
+        <div class="task-meta">
+          <span class="task-agent"></span><span class="task-progress"></span>
+        </div>
+        <div class="micro-progress"><i></i></div>
+      </article>
+    </template>
+    <script src="storage.js"></script>
+    <script src="schema.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
