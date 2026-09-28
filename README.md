@@ -19,6 +19,8 @@
 > [!IMPORTANT]
 > Swarm Studio is an explainable, deterministic **simulation**. It makes no model, agent, or network calls. Token counts, latency, and agent activity are synthetic demo telemetry.
 
+[Open the live studio ↗](https://harshareddy0405.github.io/swarm-studio/) · [Engineering notes](docs/ENGINEERING.md) · [Quality checks](https://github.com/harshareddy0405/swarm-studio/actions)
+
 ## Why this exists
 
 Multi-agent diagrams look tidy; real orchestration does not. Capacity changes, specialist skills overlap, tasks stall at quality gates, and the routing logic is often invisible. Swarm Studio turns those abstractions into a board you can operate and inspect.
